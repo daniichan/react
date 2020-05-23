@@ -5,6 +5,7 @@ import './App.css';
 import Header from './header';
 import Tabela from './tabela';
 import Formulario from './formulario';
+import Styled from './styled';
 
 class App extends Component {
 
@@ -55,6 +56,8 @@ class App extends Component {
           <Tabela autores={ this.state.autores } removeAutor={ this.removeAutor } />
           <Formulario escutadorDeSubmit={ this.escutadorDeSubmit } />
         </div>
+
+        <Styled />
        </Fragment>
     );
   }
