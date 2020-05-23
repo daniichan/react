@@ -22,6 +22,11 @@ class Formulario extends Component {
         });
     }
 
+    submitFormulario = () => {
+        this.props.escutadorDeSubmit(this.state);
+        this.setState(this.stateInicial);
+    }
+
     render() {
         const { nome, livro, preco } = this.state;
 
@@ -53,7 +58,12 @@ class Formulario extends Component {
                     value={preco}
                     onChange={this.escutadorDeInput}
                 />
-                <button type="button">Salvar</button>
+                <button 
+                    type="button"
+                    onClick={ this.submitFormulario }
+                >
+                    Salvar
+                </button>
             </form>
         );
     }
