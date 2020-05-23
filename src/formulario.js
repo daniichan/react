@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
+import FormValidator from './formValidator';
 
 class Formulario extends Component {
 
     constructor(props) {
         super(props); // SUPER passa para o pai
+
+        this.validador = new FormValidator();
 
         this.stateInicial = {
             nome: '',
@@ -23,8 +26,12 @@ class Formulario extends Component {
     }
 
     submitFormulario = () => {
-        this.props.escutadorDeSubmit(this.state);
-        this.setState(this.stateInicial);
+        if(this.validador.valida(this.state)) {
+            this.props.escutadorDeSubmit(this.state);
+            this.setState(this.stateInicial);
+        } else {
+            console.log('submit bloqueado');
+        }
     }
 
     render() {
