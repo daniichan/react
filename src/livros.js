@@ -1,31 +1,23 @@
 import React, { Component, Fragment } from 'react';
 import Header from './header';
 import DataTable from './datatable';
+import APIService from './apiService';
 
 class Livros extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            livros: [
-                {
-                    livro: 'React'
-                },
-                {
-                    livro: 'Java'
-                },
-                {
-                    livro: 'Design'
-                },
-                {
-                    livro: 'DevOps'
-                },
-                {
-                    livro: 'Java'
-                }
-            ],
+            livros: [],
             titulo: 'Livros'
         };
+    }
+
+    componentDidMount() {
+        APIService.listaLivros()
+                    .then(res => {
+                        this.setState({ livros: [...this.state.livros, ...res.data]});
+                    });
     }
 
     render() {

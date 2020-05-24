@@ -1,31 +1,23 @@
 import React, { Fragment, Component } from 'react';
 import Header from './header';
 import DataTable from './datatable';
+import APIService from './apiService';
 
 class Autores extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            autores: [
-                {
-                    autor: 'Paulo',
-                },
-                {
-                    autor: 'Daniel',
-                },
-                {
-                    autor: 'Marcos',
-                },
-                {
-                    autor: 'Bruno',
-                },
-                {
-                    autor: 'Nico',
-                }
-            ],
+            nomes: [],
             titulo: 'Autores'
         }
+    }
+
+    componentDidMount() {
+        APIService.listaNomes()
+                    .then(res => {
+                        this.setState({ nomes: [...this.state.nomes, ...res.data]});
+                    });
     }
 
     render() {
@@ -35,9 +27,9 @@ class Autores extends Component {
                 <div className='container'>
                     <h1>Autores</h1>
                     <DataTable
-                        dados={this.state.autores}
+                        dados={this.state.nomes}
                         titulo={this.state.titulo}
-                        colunas={['autor']}
+                        colunas={['nome']}
                     />
                 </div>
             </Fragment>
