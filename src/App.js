@@ -7,9 +7,9 @@ import Tabela from './tabela';
 import Formulario from './formulario';
 import Styled from './styled';
 import PopUp from './popup';
+import APIService from './apiService';
 
 class App extends Component {
-
   state = {
     autores: [
       {
@@ -53,11 +53,6 @@ class App extends Component {
   }
 
   render() {
-
-    fetch('http://localhost:8000/api/autor')
-      .then(res => res.json())
-      .then(res => console.log(res.data));
-
     return (
       <Fragment>
         <Header />
