@@ -53,6 +53,11 @@ class App extends Component {
   }
 
   render() {
+
+    fetch('http://localhost:8000/api/autor')
+      .then(res => res.json())
+      .then(res => console.log(res.data));
+
     return (
       <Fragment>
         <Header />
