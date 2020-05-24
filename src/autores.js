@@ -2,6 +2,7 @@ import React, { Fragment, Component } from 'react';
 import Header from './header';
 import DataTable from './datatable';
 import APIService from './apiService';
+import PopUp from './popup';
 
 class Autores extends Component {
     constructor(props) {
@@ -15,9 +16,13 @@ class Autores extends Component {
 
     componentDidMount() {
         APIService.listaNomes()
+                    .then(res => APIService.trataErros(res))
                     .then(res => {
-                        this.setState({ nomes: [...this.state.nomes, ...res.data]});
-                    });
+                        if(res.message === 'success') {
+                            this.setState({ nomes: [...this.state.nomes, ...res.data]});
+                        }
+                    })
+                    .catch(err => PopUp.exibeMensagem('error', `Erro na comunicação com a API: ${err}`));
     }
 
     render() {

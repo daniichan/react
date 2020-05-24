@@ -5,7 +5,9 @@ const Sobre = () => {
     return(
         <Fragment>
             <Header />
-            <h1>Sobre</h1>
+            <div className='container'>
+                <h1>Sobre</h1>
+            </div>
         </Fragment>
     );
 }

@@ -21,32 +21,44 @@ class App extends Component {
 
   componentDidMount() {
     APIService.listaAutores()
+              .then(res => APIService.trataErros(res))
               .then(res => {
-                this.setState({autores: [...this.state.autores, ...res.data]})
-                // ira manter os autores ja existentes no state.autores e carregar o que vem da api
-              });
+                if(res.message === 'success') {
+                  // ira manter os autores ja existentes no state.autores e carregar o que vem da api
+                  this.setState({autores: [...this.state.autores, ...res.data]});
+                }
+              })
+              .catch(err => PopUp.exibeMensagem('error', `Erro na comunicação com a API: ${err}`));
   }
  
   removeAutor = id => {
     const { autores } = this.state;
 
-    this.setState({
-      autores: autores.filter((autor) => {
-        return autor.id !== id;
-      })
+    const autoresAtualizados = autores.filter(autor => {
+      return autor.id !== id;
     });
 
-    PopUp.exibeMensagem('error', 'Autor removido com sucesso');
-    APIService.removeAutor(id);
+    APIService.removeAutor(id)
+              .then(res => APIService.trataErros(res))
+              .then(res => {
+                if(res.message === 'deleted') {
+                  this.setState({ autores: [...autoresAtualizados]});
+                  PopUp.exibeMensagem('error', 'Autor removido com sucesso');
+                }
+              })
+              .catch(err => PopUp.exibeMensagem('error', `Erro na comunicação com a API: ${err}`));
   }
 
   escutadorDeSubmit = autor => {
     APIService.criarAutor(JSON.stringify(autor))
-              .then(res => res.data)
-              .then(autor => {
-                this.setState({ autores: [...this.state.autores, autor] });
-                PopUp.exibeMensagem('success', 'Autor adicionado com sucesso.');
-              });
+              .then(res => APIService.trataErros(res))
+              .then(res => {
+                if(res.message === 'success') {
+                  this.setState({ autores: [...this.state.autores, res.data] });
+                  PopUp.exibeMensagem('success', 'Autor adicionado com sucesso.');
+                }
+              })
+              .catch(err => PopUp.exibeMensagem('error', `Erro na comunicação com a API: ${err}`));
   }
 
   render() {

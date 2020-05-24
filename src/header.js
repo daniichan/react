@@ -3,8 +3,8 @@ import LinkWrapper from './linkWrapper';
 
 const Header = () => {
     return (
-        <nav>
-            <div className="nav-wrapper indigo lighten-2">
+        <nav className="indigo lighten-2">
+            <div className="container nav-wrapper">
                 <LinkWrapper to="/" className="brand-logo" activeStyle={{}}>Casa do Código</LinkWrapper>
                 <ul className="right">
                     <li><LinkWrapper to="/autores">Autores</LinkWrapper></li>
