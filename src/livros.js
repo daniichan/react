@@ -22,7 +22,7 @@ class Livros extends Component {
                             this.setState({ livros: [...this.state.livros, ...res.data]});
                         }
                     })
-                    .catch(err => PopUp.exibeMensagem('error', `Erro na comunicação com a API: ${err}`));
+                    .catch(err => PopUp.exibeMensagem('error', `Erro na comunicação com a API.`));
     }
 
     render() {

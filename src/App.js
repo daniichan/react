@@ -28,7 +28,7 @@ class App extends Component {
                   this.setState({autores: [...this.state.autores, ...res.data]});
                 }
               })
-              .catch(err => PopUp.exibeMensagem('error', `Erro na comunicação com a API: ${err}`));
+              .catch(err => PopUp.exibeMensagem('error', `Erro na comunicação com a API.`));
   }
  
   removeAutor = id => {
@@ -46,7 +46,7 @@ class App extends Component {
                   PopUp.exibeMensagem('error', 'Autor removido com sucesso');
                 }
               })
-              .catch(err => PopUp.exibeMensagem('error', `Erro na comunicação com a API: ${err}`));
+              .catch(err => PopUp.exibeMensagem('error', `Erro na comunicação com a API`));
   }
 
   escutadorDeSubmit = autor => {
@@ -58,7 +58,7 @@ class App extends Component {
                   PopUp.exibeMensagem('success', 'Autor adicionado com sucesso.');
                 }
               })
-              .catch(err => PopUp.exibeMensagem('error', `Erro na comunicação com a API: ${err}`));
+              .catch(err => PopUp.exibeMensagem('error', `Erro na comunicação com a API.`));
   }
 
   render() {

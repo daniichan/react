@@ -22,7 +22,7 @@ class Autores extends Component {
                             this.setState({ nomes: [...this.state.nomes, ...res.data]});
                         }
                     })
-                    .catch(err => PopUp.exibeMensagem('error', `Erro na comunicação com a API: ${err}`));
+                    .catch(err => PopUp.exibeMensagem('error', `Erro na comunicação com a API.`));
     }
 
     render() {
