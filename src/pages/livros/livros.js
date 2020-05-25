@@ -1,8 +1,8 @@
 import React, { Component, Fragment } from 'react';
-import Header from './header';
-import DataTable from './datatable';
-import APIService from './apiService';
-import PopUp from './popup';
+import Header from '../../components/header/header';
+import DataTable from '../../components/datatable/datatable';
+import APIService from '../../utils/apiService';
+import PopUp from '../../utils/popup';
 
 class Livros extends Component {
     constructor(props) {
@@ -16,7 +16,6 @@ class Livros extends Component {
 
     componentDidMount() {
         APIService.listaLivros()
-                    .then(res => APIService.trataErros(res))
                     .then(res => {
                         if(res.message === 'success') {
                             this.setState({ livros: [...this.state.livros, ...res.data]});

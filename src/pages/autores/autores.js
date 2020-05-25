@@ -1,8 +1,8 @@
 import React, { Fragment, Component } from 'react';
-import Header from './header';
-import DataTable from './datatable';
-import APIService from './apiService';
-import PopUp from './popup';
+import Header from '../../components/header/header';
+import DataTable from '../../components/datatable/datatable';
+import APIService from '../../utils/apiService';
+import PopUp from '../../utils/popup';
 
 class Autores extends Component {
     constructor(props) {
@@ -16,7 +16,6 @@ class Autores extends Component {
 
     componentDidMount() {
         APIService.listaNomes()
-                    .then(res => APIService.trataErros(res))
                     .then(res => {
                         if(res.message === 'success') {
                             this.setState({ nomes: [...this.state.nomes, ...res.data]});
