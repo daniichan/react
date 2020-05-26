@@ -39,7 +39,11 @@ class Formulario extends Component {
             livro: '',
             preco: '',
             validacao: this.validador.valido(),
-            open: true
+            mensagem: {
+                open: false,
+                texto: '',
+                tipo: 'success'
+            }
         }
 
         this.state = this.stateInicial;
@@ -65,10 +69,16 @@ class Formulario extends Component {
             const camposInvalidos = campos.filter(elem => {
                 return elem.isInvalid;
             });
+            const erros = camposInvalidos.reduce((texto, campo) => 
+                texto + campo.message + ' ',
+                ''
+            );
+            this.setState({ mensagem: {
+                open: true,
+                texto: erros,
+                tipo: 'error'
+            }});
 
-            camposInvalidos.forEach(campo => {
-                PopUp.exibeMensagem('error', campo.message);
-            });
         }
     }
 
@@ -77,8 +87,16 @@ class Formulario extends Component {
 
         return (
             <>
-                <Toast open={this.state.open} handleClose={() => this.setState({ open: false })}>
-                    Tudo OK
+                <Toast 
+                    open={this.state.mensagem.open} 
+                    handleClose={() => this.setState({ 
+                        mensagem: { 
+                            open: false 
+                        } 
+                    })}
+                    severity={this.state.mensagem.tipo}
+                >
+                    {this.state.mensagem.texto}
                 </Toast>
                 <form>
                     <Grid container spacing={2} alignItems="center">
