@@ -6,18 +6,24 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Button from '@material-ui/core/button';
 
-const CellDeleta = ({removeDados, id, titulo}) => {
+const CellDeleta = ({removeDados, id}) => {
     if(!removeDados) {
         return null;
     }
-    if(titulo) {
-        return <TableCell>Remover</TableCell>;
-    }
+
     return(
         <TableCell>
             <Button  variant="contained" color="primary" onClick={() => removeDados(id) }>Remover</Button>
         </TableCell>
     ); 
+}
+
+const TituloDeleta = ({removeDados})=> {
+    if(!removeDados) {
+        return null;
+    }
+
+    return <TableCell>Remover</TableCell>;
 }
 
 const Tabela = props => {
@@ -27,7 +33,7 @@ const Tabela = props => {
             <TableHead>
                 <TableRow>
                     {campos.map((campo, index) => <TableCell key={index}>{campo.titulo}</TableCell>)}
-                    <CellDeleta titulo removeDados={removeDados} />
+                    <TituloDeleta removeDados={removeDados} />
                 </TableRow>
             </TableHead>
 
