@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import TextField from '@material-ui/core/TextField';
+import Grid from '@material-ui/core/Grid';
+import Button from '@material-ui/core/Button';
+
 import FormValidator from '../../utils/formValidator';
 import PopUp from '../../utils/popup';
 
@@ -72,8 +75,8 @@ class Formulario extends Component {
 
         return (
             <form>
-                <div className="row">
-                    <div className="input-field col s4">
+                <Grid container spacing={2} alignItems="center">
+                    <Grid item>
                         <TextField 
                             id="nome" 
                             name="nome"
@@ -82,8 +85,8 @@ class Formulario extends Component {
                             value={nome} 
                             onChange={this.escutadorDeInput}
                         />
-                    </div>
-                    <div className="input-field col s4">
+                    </Grid>
+                    <Grid item>
                         <TextField 
                             id="livro" 
                             name="livro"
@@ -92,8 +95,8 @@ class Formulario extends Component {
                             value={livro} 
                             onChange={this.escutadorDeInput}
                         />
-                    </div>
-                    <div className="input-field col s4">
+                    </Grid>
+                    <Grid item>
                         <TextField 
                             id="preco" 
                             name="preco"
@@ -102,11 +105,13 @@ class Formulario extends Component {
                             value={preco} 
                             onChange={this.escutadorDeInput}
                         />
-                    </div>
-                </div>
-                <button onClick={this.submitFormulario} type="button" className="waves-effect waves-light indigo lighten-2 btn">
-                    Salvar
-                </button>
+                    </Grid>
+                    <Grid item>
+                        <Button variant="contained" color="primary" onClick={this.submitFormulario} >
+                            Salvar
+                        </Button>
+                    </Grid>
+                </Grid>
             </form>
         );
     }

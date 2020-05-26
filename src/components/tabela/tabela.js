@@ -13,7 +13,7 @@ const CellDeleta = ({removeDados, id}) => {
 
     return(
         <TableCell>
-            <Button  variant="contained" color="primary" onClick={() => removeDados(id) }>Remover</Button>
+            <Button variant="contained" color="primary" onClick={() => removeDados(id) }>Remover</Button>
         </TableCell>
     ); 
 }
