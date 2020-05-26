@@ -71,8 +71,8 @@ class App extends Component {
         
         <div className="container mb-10">
           <h1>Casa do Código</h1>
-          <Tabela campos={ campos } dados={ this.state.autores } removeAutor={ this.removeAutor } />
-          <Formulario escutadorDeSubmit={ this.escutadorDeSubmit } />
+          <Tabela campos={campos} dados={this.state.autores} removeDados={this.removeAutor} />
+          <Formulario escutadorDeSubmit={this.escutadorDeSubmit} />
         </div>
 
         <Styled />
