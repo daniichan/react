@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
+import Snackbar from '@material-ui/core/Snackbar';
 
 import FormValidator from '../../utils/formValidator';
 import PopUp from '../../utils/popup';
@@ -38,6 +39,7 @@ class Formulario extends Component {
             livro: '',
             preco: '',
             validacao: this.validador.valido(),
+            open: true
         }
 
         this.state = this.stateInicial;
@@ -64,7 +66,7 @@ class Formulario extends Component {
                 return elem.isInvalid;
             });
 
-            camposInvalidos.forEach( campo => {
+            camposInvalidos.forEach(campo => {
                 PopUp.exibeMensagem('error', campo.message);
             });
         }
@@ -74,45 +76,53 @@ class Formulario extends Component {
         const { nome, livro, preco } = this.state;
 
         return (
-            <form>
-                <Grid container spacing={2} alignItems="center">
-                    <Grid item>
-                        <TextField 
-                            id="nome" 
-                            name="nome"
-                            label="Nome" 
-                            variant="outlined"
-                            value={nome} 
-                            onChange={this.escutadorDeInput}
-                        />
+            <>
+                <Snackbar 
+                    open={this.state.open} 
+                    onClose={() => this.setState({ open: false })}
+                    message="ab" 
+                    autoHideDuration={2000} 
+                />
+                <form>
+                    <Grid container spacing={2} alignItems="center">
+                        <Grid item>
+                            <TextField 
+                                id="nome" 
+                                name="nome"
+                                label="Nome" 
+                                variant="outlined"
+                                value={nome} 
+                                onChange={this.escutadorDeInput}
+                            />
+                        </Grid>
+                        <Grid item>
+                            <TextField 
+                                id="livro" 
+                                name="livro"
+                                label="Livro" 
+                                variant="outlined"
+                                value={livro} 
+                                onChange={this.escutadorDeInput}
+                            />
+                        </Grid>
+                        <Grid item>
+                            <TextField 
+                                id="preco" 
+                                name="preco"
+                                label="Preço" 
+                                variant="outlined"
+                                value={preco} 
+                                onChange={this.escutadorDeInput}
+                            />
+                        </Grid>
+                        <Grid item>
+                            <Button variant="contained" color="primary" onClick={this.submitFormulario} >
+                                Salvar
+                            </Button>
+                        </Grid>
                     </Grid>
-                    <Grid item>
-                        <TextField 
-                            id="livro" 
-                            name="livro"
-                            label="Livro" 
-                            variant="outlined"
-                            value={livro} 
-                            onChange={this.escutadorDeInput}
-                        />
-                    </Grid>
-                    <Grid item>
-                        <TextField 
-                            id="preco" 
-                            name="preco"
-                            label="Preço" 
-                            variant="outlined"
-                            value={preco} 
-                            onChange={this.escutadorDeInput}
-                        />
-                    </Grid>
-                    <Grid item>
-                        <Button variant="contained" color="primary" onClick={this.submitFormulario} >
-                            Salvar
-                        </Button>
-                    </Grid>
-                </Grid>
-            </form>
+                </form>
+            </>
         );
     }
 }
