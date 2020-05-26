@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
-import Snackbar from '@material-ui/core/Snackbar';
 
 import FormValidator from '../../utils/formValidator';
 import PopUp from '../../utils/popup';
+import Toast from '../toast/toast';
 
 class Formulario extends Component {
 
@@ -77,12 +77,9 @@ class Formulario extends Component {
 
         return (
             <>
-                <Snackbar 
-                    open={this.state.open} 
-                    onClose={() => this.setState({ open: false })}
-                    message="ab" 
-                    autoHideDuration={2000} 
-                />
+                <Toast open={this.state.open} handleClose={() => this.setState({ open: false })}>
+                    Tudo OK
+                </Toast>
                 <form>
                     <Grid container spacing={2} alignItems="center">
                         <Grid item>
