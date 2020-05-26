@@ -63,7 +63,6 @@ class App extends Component {
       { titulo: 'Autores', dado: 'nome'},
       { titulo: 'Livros', dado: 'livro'},
       { titulo: 'Preços', dado: 'preco'},
-      // {  }
     ];
     return (
       <Fragment>
