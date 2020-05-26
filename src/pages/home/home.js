@@ -59,14 +59,19 @@ class App extends Component {
   }
 
   render() {
-    const campos = ['autores', 'livros', 'preços', 'remover']
+    const campos = [
+      { titulo: 'Autores', dado: 'nome'},
+      { titulo: 'Livros', dado: 'livro'},
+      { titulo: 'Preços', dado: 'preco'},
+      // {  }
+    ];
     return (
       <Fragment>
         <Header />
         
         <div className="container mb-10">
           <h1>Casa do Código</h1>
-          <Tabela campos={ campos }  autores={ this.state.autores } removeAutor={ this.removeAutor } />
+          <Tabela campos={ campos } dados={ this.state.autores } removeAutor={ this.removeAutor } />
           <Formulario escutadorDeSubmit={ this.escutadorDeSubmit } />
         </div>
 
