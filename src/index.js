@@ -9,14 +9,16 @@ import NotFound from './pages/notFound/notFound';
 import './index.css';
 
 ReactDOM.render(
-  <BrowserRouter>
-    <Switch>
-      <Route path='/' exact={true} component={App} />
-      <Route path='/sobre' component={Sobre} />
-      <Route path='/livros' component={Livros} />
-      <Route path='/autores' component={Autores} />
-      <Route component={NotFound} />
-    </Switch>
-  </BrowserRouter>
+  <React.StrictMode>
+    <BrowserRouter>
+      <Switch>
+        <Route path='/' exact={true} component={App} />
+        <Route path='/sobre' component={Sobre} />
+        <Route path='/livros' component={Livros} />
+        <Route path='/autores' component={Autores} />
+        <Route component={NotFound} />
+      </Switch>
+    </BrowserRouter>
+  </React.StrictMode>
   , document.getElementById('root')
 );

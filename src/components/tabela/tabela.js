@@ -4,6 +4,7 @@ import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
+import Button from '@material-ui/core/button';
 
 class Tabela extends Component {
     render() {
@@ -27,11 +28,7 @@ class Tabela extends Component {
                             <TableCell>{ autor.livro }</TableCell>
                             <TableCell>{ autor.preco }</TableCell>
                             <TableCell>
-                                <button
-                                    onClick={() => {
-                                        removeAutor(autor.id)
-                                    }}>
-                                    Remover</button>
+                                <Button  variant="contained" color="primary" onClick={() => removeAutor(autor.id) }>Remover</Button>
                             </TableCell>
                         </TableRow>
                     ))}
