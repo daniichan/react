@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import TextField from '@material-ui/core/TextField';
 import FormValidator from '../../utils/formValidator';
 import PopUp from '../../utils/popup';
 
@@ -73,35 +74,32 @@ class Formulario extends Component {
             <form>
                 <div className="row">
                     <div className="input-field col s4">
-                        <label className="input-field" htmlFor="nome">Nome</label>
-                        <input
-                            className="validate"
-                            id="nome"
-                            type="text"
+                        <TextField 
+                            id="nome" 
                             name="nome"
-                            value={nome}
+                            label="Nome" 
+                            variant="outlined"
+                            value={nome} 
                             onChange={this.escutadorDeInput}
                         />
                     </div>
                     <div className="input-field col s4">
-                        <label className="input-field" htmlFor="livro">Livro</label>
-                        <input
-                            className="validate"
-                            id="livro"
-                            type="text"
+                        <TextField 
+                            id="livro" 
                             name="livro"
-                            value={livro}
+                            label="Livro" 
+                            variant="outlined"
+                            value={livro} 
                             onChange={this.escutadorDeInput}
                         />
                     </div>
                     <div className="input-field col s4">
-                        <label className="input-field" htmlFor="preco">Preço</label>
-                        <input
-                            className="validate"
-                            id="preco"
-                            type="text"
+                        <TextField 
+                            id="preco" 
                             name="preco"
-                            value={preco}
+                            label="Preço" 
+                            variant="outlined"
+                            value={preco} 
                             onChange={this.escutadorDeInput}
                         />
                     </div>
