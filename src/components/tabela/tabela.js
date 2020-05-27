@@ -41,7 +41,7 @@ const Tabela = props => {
                 {dados.map(dado => (
                     <TableRow key={dado.id}>
                         {campos.map((campo, index) => <TableCell key={index}>{dado[campo.dado]}</TableCell>)}
-                        <CellDeleta id={dados.id} removeDados={removeDados} />
+                        <CellDeleta id={dado.id} removeDados={removeDados} />
                     </TableRow>
                 ))}
             </TableBody>

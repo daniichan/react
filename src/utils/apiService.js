@@ -1,36 +1,28 @@
 // AXIOS ===> https://cursos.alura.com.br/course/react-validacao-rotas-api/task/59813
 
+const urlBase = 'http://localhost:8000/api/autor';
+
+const consomeApi = (parametro = '', method = 'GET', body) => {
+    return fetch(`${urlBase}/${parametro}`, {
+        method,
+        headers: { 'content-type': 'application/json' },
+        body
+    })
+    .then(res => APIService.trataErros(res))
+    .then(res => res.json());
+}
+
 const APIService = {
 
-    listaAutores: () => {
-        return fetch('http://localhost:8000/api/autor')
-                .then(res => APIService.trataErros(res))
-                .then(res => res.json());
-    },
+    listaAutores: () => consomeApi(),
 
-    criarAutor: autor => {
-        return fetch('http://localhost:8000/api/autor', { method: 'POST', headers: { 'content-type': 'application/json' }, body: autor })
-                .then(res => APIService.trataErros(res))
-                .then(res => res.json());
-    },
+    criarAutor: autor => consomeApi('', 'POST', autor),
 
-    listaNomes: () => {
-        return fetch('http://localhost:8000/api/autor/nome')
-                .then(res => APIService.trataErros(res))
-                .then(res => res.json());
-    },
+    listaNomes: () => consomeApi(),
 
-    listaLivros: () => {
-        return fetch('http://localhost:8000/api/autor/livro')
-                .then(res => APIService.trataErros(res))
-                .then(res => res.json());
-    },
+    listaLivros: () => consomeApi('livro'),
 
-    removeAutor: id => {
-        return fetch(`http://localhost:8000/api/autor/${id}`, { method: 'DELETE', headers: { 'content-type': 'application/json' } })
-                .then(res => APIService.trataErros(res))
-                .then(res => res.json());
-    },
+    removeAutor: id => consomeApi(id, 'DELETE'),
 
     trataErros: res => {
         if(!res.ok) {

@@ -46,7 +46,12 @@ class App extends Component {
               .catch(err => PopUp.exibeMensagem('error', `Erro na comunicação com a API`));
   }
 
-  escutadorDeSubmit = autor => {
+  escutadorDeSubmit = dados => {
+    const autor = {
+      nome: dados.nome,
+      livro: dados.livro,
+      preco: dados.preco
+    }
     APIService.criarAutor(JSON.stringify(autor))
               .then(res => {
                 if(res.message === 'success') {
